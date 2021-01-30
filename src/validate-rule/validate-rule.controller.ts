@@ -5,7 +5,6 @@ import {
   HttpStatus,
   HttpException,
   HttpCode,
-  Req,
 } from '@nestjs/common';
 import { ValidateRule } from './dto/validate-rule.dto';
 import { BaseResponse } from '../app.dto';
@@ -15,7 +14,7 @@ import { validateFields, getFieldValue, useRule } from './validate-rule.utils';
 export class ValidateRuleController {
   @Post()
   @HttpCode(200)
-  validateRule(@Body() validateRule: ValidateRule, @Req() req): BaseResponse {
+  validateRule(@Body() validateRule: ValidateRule): BaseResponse {
     const validation = validateFields(validateRule);
     if (!validation.ok) {
       throw new HttpException(
